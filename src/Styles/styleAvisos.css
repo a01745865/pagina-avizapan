@@ -1,0 +1,96 @@
+a > img{
+    height: 100px;
+}
+
+.container{
+    margin-right: 0px !important;
+}
+
+h1{
+    text-align: center;
+}
+
+.formulario{
+    position: absolute;
+    top: 250px;
+    left: 250px;
+    width: 70%;
+    display: grid;
+    grid-template-columns: [x0] 1fr [x1] 1fr;
+    grid-template-rows: [y0] 1fr [y1] 1fr [y2] 1fr [y3] 1fr;
+}
+
+.titulo{
+    grid-column: x0;
+    grid-row: y0;
+    height: 50px; 
+    width: 70%;
+    margin-left: 20%;
+}
+
+.categoria{
+    grid-column: x1;
+    grid-row: y0;
+    height: 58px;
+    width: 70%;
+}
+
+.descripcion{
+    grid-column: x0;
+    grid-row: y1;
+    margin-top: 20px;
+    margin-left: 20%;
+}
+
+.tiempoCodigo{
+    grid-column: x1;
+    grid-row: y1;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.tiempo{
+    flex: 40%;
+    margin-right: 5px;
+}
+
+.agregarUbi{
+    flex: 40%;
+}
+
+.enviarAlerta{
+    background-color: #77D353;
+    grid-column: x0/x2;
+    grid-row: y3;
+    margin: 0px auto;
+    height: 50px;
+    width: 150px;
+    padding: .5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: .4rem;
+    border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+}
+
+.desaparecer{
+    animation: desaparecer 2s;
+}
+
+@keyframes desaparecer {
+    0%{
+        opacity: 1;
+    }
+    25%{
+        opacity: .75;
+    }
+    50%{
+        opacity: .5;
+    }
+    75%{
+        opacity: .25;
+    }   
+    100%{
+        opacity: 0;
+    }
+}
