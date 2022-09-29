@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs');
 function LogIn({setSuccess, setAdminId}){
     async function validateToken(token){
         try {
-            const {data} = await axios.get("http://10.48.105.18:4000/admins/token", {
+            const {data} = await axios.get("https://avizapan-app-p6qc5.ondigitalocean.app/admins/token", {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },
@@ -43,7 +43,7 @@ function LogIn({setSuccess, setAdminId}){
     }, [usuario, contra])
 
     async function logIn(body){
-        const data = await axios.post("http://10.48.105.18:4000/admins", body);
+        const data = await axios.post("https://avizapan-app-p6qc5.ondigitalocean.app/admins", body);
         return data
     }
 
@@ -80,7 +80,7 @@ function LogIn({setSuccess, setAdminId}){
                 <div className="logo-login">
                     <img src={imagen} width="450px" alt="Logo Atizapan" />
                 </div>
-                <hr width="3" size="500" color="#000000"/>
+                <hr className="hr" width="3" size="500" color="#000000"/>
                 <div className="logIn">
                     <form action="">
                         <p className="titulo-login">

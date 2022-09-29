@@ -1,53 +1,47 @@
 a > img{
-    height: 100px;
+    width: 100px;
 }
 
-.container{
-    margin-right: 0px !important;
+.formulario-div {
+
 }
 
 h1{
     text-align: center;
+    margin-top: 5rem!important;
 }
 
 .formulario{
-    position: absolute;
-    top: 250px;
-    left: 250px;
-    width: 70%;
+    margin-top: 3rem;
+    width: 7    0%;
+    margin-left: auto;
+    margin-right: auto;
     display: grid;
-    grid-template-columns: [x0] 1fr [x1] 1fr;
-    grid-template-rows: [y0] 1fr [y1] 1fr [y2] 1fr [y3] 1fr;
+    align-items: center;
+    gap: 1rem;
+    grid-template-areas: 
+    "titulo categoria" 
+    "descripcion tiempoCodigo "
+    "boton boton";
 }
 
 .titulo{
-    grid-column: x0;
-    grid-row: y0;
-    height: 50px; 
-    width: 70%;
-    margin-left: 20%;
+    grid-area: titulo;
 }
 
 .categoria{
-    grid-column: x1;
-    grid-row: y0;
-    height: 58px;
-    width: 70%;
+    grid-area: categoria;
+    height: 100%;
 }
 
 .descripcion{
-    grid-column: x0;
-    grid-row: y1;
-    margin-top: 20px;
-    margin-left: 20%;
+    grid-area: descripcion;
 }
 
 .tiempoCodigo{
-    grid-column: x1;
-    grid-row: y1;
+    grid-area: tiempoCodigo;
     display: flex;
-    margin-left: 20px;
-    margin-top: 20px;
+    gap: 0.5rem;
 }
 
 .tiempo{
@@ -60,9 +54,8 @@ h1{
 }
 
 .enviarAlerta{
+    grid-area: boton;
     background-color: #77D353;
-    grid-column: x0/x2;
-    grid-row: y3;
     margin: 0px auto;
     height: 50px;
     width: 150px;
@@ -75,6 +68,16 @@ h1{
 
 .desaparecer{
     animation: desaparecer 2s;
+}
+
+@media (max-width: 800px) {
+    .formulario{
+        width: 90%;
+        grid-template-areas: 
+    "titulo""categoria" 
+    "descripcion""tiempoCodigo "
+    "boton";
+    }
 }
 
 @keyframes desaparecer {

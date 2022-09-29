@@ -37,9 +37,9 @@ function Avisos({adminId}){
         const data = await getLocation(lugar);
         const lat = data.results[0].geometry.location.lat;
         const long = data.results[0].geometry.location.lng;
-        // axios.post(
-        //     'https://avizapan-app-p6qc5.ondigitalocean.app/notifications', {title: title, description: description, location: lugar, latitude: lat, longitude: long, adminId: adminId, duration: tiempo, categoryId: categoryId}
-        // ).then((respone) => {console.log(respone.data);});
+        axios.post(
+            'https://avizapan-app-p6qc5.ondigitalocean.app/notifications', {title: title, description: description, location: lugar, latitude: lat, longitude: long, adminId: adminId, duration: tiempo, categoryId: categoryId}
+        ).then((respone) => {console.log(respone.data);});
         setEnviado(true);
         reset();
     }
@@ -59,7 +59,7 @@ function Avisos({adminId}){
     }
     return(
         <>
-        <div>
+        <div className='avisos-div'>
             {enviado && (
             <div class="alert alert-success desaparecer" role="alert">
                 Alerta Registrada con éxito!
@@ -74,9 +74,9 @@ function Avisos({adminId}){
             <h1>
                 Registrar Nueva Alerta
             </h1>
-            <div>
+            <div className='formulario-div'>
                 <form action="" className="formulario">
-                    <div className="form-floating mb-3 titulo">
+                    <div className="form-floating titulo">
                         <input type="text" name="titulo" className="form-control" placeholder="name@example.com" value={title} onChange={e => setTitulo(e.currentTarget.value)} required/>
                         <label htmlFor="titulo">Titulo Alerta</label>
                     </div>
