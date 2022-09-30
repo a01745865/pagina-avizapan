@@ -7,7 +7,7 @@ const url = "https://avizapan-app-3s4eu.ondigitalocean.app/";
 async function getLocation(zipcode){
     
     try{
-        const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${process.env.REACT_APP_API_KEY}`);
+        const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&region=mx&key=${process.env.REACT_APP_API_KEY}`);
         return data;
     }catch{
         return null;
