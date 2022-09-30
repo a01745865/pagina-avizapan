@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 
 
 function LogIn({setSuccess, setAdminId}){
+    console.log(process.env.REACT_APP_API_KEY);
     async function validateToken(token){
         try {
             const {data} = await axios.get("https://avizapan-app-p6qc5.ondigitalocean.app/admins/token", {
