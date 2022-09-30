@@ -4,13 +4,13 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 const bcrypt = require('bcryptjs');
+const url = "https://avizapan-app-3s4eu.ondigitalocean.app/";
 
 
 function LogIn({setSuccess, setAdminId}){
-    console.log(process.env.REACT_APP_API_KEY);
     async function validateToken(token){
         try {
-            const {data} = await axios.get("https://avizapan-app-p6qc5.ondigitalocean.app/admins/token", {
+            const {data} = await axios.get(`${url}admins/token`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },
@@ -44,7 +44,7 @@ function LogIn({setSuccess, setAdminId}){
     }, [usuario, contra])
 
     async function logIn(body){
-        const data = await axios.post("https://avizapan-app-p6qc5.ondigitalocean.app/admins", body);
+        const data = await axios.post(`${url}admins`, body);
         return data
     }
 

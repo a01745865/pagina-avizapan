@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from "axios";
 import imagen from "../Assets/descarga (4).jfif";
 import "../Styles/styleAvisos.css";
+const url = "https://avizapan-app-3s4eu.ondigitalocean.app/";
 
 async function getLocation(zipcode){
     
@@ -10,6 +11,15 @@ async function getLocation(zipcode){
         return data;
     }catch{
         return null;
+    }
+}
+
+async function getCategories({setCategories}){
+    try{
+        const {data} = await axios.get(`${url}categories`);
+        setCategories(data);
+    }catch{
+        setCategories([]);
     }
 }
 
@@ -23,6 +33,10 @@ function Avisos({adminId}){
     //Variable que habilita o deshabilita el boton de enviar
     const [disable, setDisable] = useState(true)
     const [enviado, setEnviado] = useState(false);
+    //Lista de categorias obtenidas de la bd
+    const [categories, setCategories] = useState([]);
+    const [selectOptions, setSelectOptions] = useState();
+
     //Esta funcion se ejecuta cuando uno de los valores definidos cambian 
     useEffect(()=>{
         if (title && (categoryId > 0 ) && description && tiempo && lugar){
@@ -31,18 +45,30 @@ function Avisos({adminId}){
             setDisable(true);
         }
     }, [title, categoryId, description, tiempo, lugar]);
-    
+
+    if(categories.length === 0){
+        getCategories({setCategories});
+    }else{
+        const select = categories.map((category)=>{
+            return ( 
+                <option value={category.id}>{category.category.toUpperCase()}</option>
+            )
+        });
+        if (!selectOptions) setSelectOptions(select);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await getLocation(lugar);
         const lat = data.results[0].geometry.location.lat;
         const long = data.results[0].geometry.location.lng;
         axios.post(
-            'https://avizapan-app-p6qc5.ondigitalocean.app/notifications', {title: title, description: description, location: lugar, latitude: lat, longitude: long, adminId: adminId, duration: tiempo, categoryId: categoryId}
+            `${url}notifications`, {title: title, description: description, location: lugar, latitude: lat, longitude: long, adminId: adminId, duration: tiempo, categoryId: categoryId}
         ).then((respone) => {console.log(respone.data);});
         setEnviado(true);
         reset();
     }
+
 
     const reset = () => {
         setTitulo('');
@@ -52,11 +78,14 @@ function Avisos({adminId}){
         setLugar('');
     }
 
+
     if (enviado){
         setTimeout(()=>{
             setEnviado(false);
         }, 2000);
     }
+
+
     return(
         <>
         <div className='avisos-div'>
@@ -81,9 +110,7 @@ function Avisos({adminId}){
                         <label htmlFor="titulo">Titulo Alerta</label>
                     </div>
                     <select name="categoria" className="form-select categoria" value={categoryId} onChange={e => setCategoria(e.currentTarget.value)} aria-label="Default Select Example">
-                        <option selected value="0">Categoria</option>
-                        <option value="1">Vialidad</option>
-                        <option value="2">Climatologica</option>
+                        {selectOptions}
                     </select>
                     <div className="form-floating descripcion">
                         <textarea name="descripcion" className="form-control" placeholder="Leave a comment here" value={description} onChange={e => setDescripcion(e.currentTarget.value)} required></textarea>
