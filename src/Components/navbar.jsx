@@ -23,7 +23,7 @@ function Navbar({setPagina, setSuccess}){
                         <li className="nav-item">
                             <button className="nav-link btn" onClick={() => {setPagina(<Dashboard/>)}}>Estadísticas</button>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item cerrar-sesion">
                             <button className="nav-link btn" onClick={handleCerrarSesion}>Cerrar Sesion</button>
                         </li>
                     </ul>
