@@ -2,7 +2,11 @@ import imagen from "../Assets/descarga (4).jfif";
 import Dashboard from "./dashboard";
 import Form from "./form";
 
-function Navbar({setPagina}){
+function Navbar({setPagina, setSuccess}){
+    const handleCerrarSesion = () => {
+        localStorage.removeItem("tokenAvizapan");
+        setSuccess(false);
+    }
 
     return (
         <nav className="navbar navbar-expand-lg ">
@@ -18,6 +22,9 @@ function Navbar({setPagina}){
                         </li>
                         <li className="nav-item">
                             <button className="nav-link btn" onClick={() => {setPagina(<Dashboard/>)}}>Estadísticas</button>
+                        </li>
+                        <li className="nav-item">
+                            <button className="nav-link btn" onClick={handleCerrarSesion}>Cerrar Sesion</button>
                         </li>
                     </ul>
                 </div>

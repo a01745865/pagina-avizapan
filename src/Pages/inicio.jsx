@@ -6,7 +6,7 @@ function Inicio(){
     const [success, setSuccess] = useState(false);
     const [adminId, setAdminId] = useState(null);
     
-    return(success ? (<Avisos adminId={adminId}/>) : (<LogIn setSuccess={setSuccess} setAdminId={setAdminId}/>));
+    return(success ? (<Avisos adminId={adminId} setSuccess={setSuccess} />) : (<LogIn setSuccess={setSuccess} setAdminId={setAdminId}/>));
 }
 
 export default Inicio;

@@ -6,7 +6,7 @@ import Example from "./Charts/pieChart";
 import ExampleLine from "./Charts/lineChart";
 import PruebaMap from "./map";
 
-const url = "http://10.48.71.181:4000/";
+const url = "http://localhost:4000/";
 
 async function datosNotificaciones({setData}){
     try{
@@ -47,7 +47,7 @@ function getDatasetCategory({data}){
     return datasetCategory;
 }
  
-/*Line Chart */
+/*Line Chart Notifications*/
 //Definir el text - titulo 
 //Definir Labels - Sera los años o meses
 const labelsNotifDateMonth = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
@@ -59,7 +59,7 @@ function getOcurrenciesPDate(data, labels){
     labels.forEach(_ => {
         ocurrencies.push(0);
     });
-    if (tipo == 'mes'){
+    if (tipo === 'mes'){
         data.forEach(notification => {
             var fecha = new Date(notification.notification_posted);
             var mes = fecha.getMonth();
@@ -70,11 +70,21 @@ function getOcurrenciesPDate(data, labels){
         data.forEach(notification => {
             var fecha = new Date(notification.notification_posted);
             var año = fecha.getFullYear();
-            var index = labels.findIndex((year) => year == año);
+            var index = labels.findIndex((year) => year === año);
             ocurrencies[index] = ocurrencies[index] + 1;
         });
     }
     return ocurrencies;
+}
+/*Line Chart Users */
+//Obtener la informacion de los usuarios
+async function getUsersData({setUsersData}){
+    try{
+        const {data} = await axios.get(`${url}tokens/date`);
+        setUsersData(data);
+    }catch{
+        setUsersData(null);
+    }
 }
 
 
@@ -85,12 +95,18 @@ function Dashboard(){
     const [labelsCategory, setLabelsCategory] = useState([]);
     const [datasetCategory, setDatasetCategory] = useState([]);
     //Data for the LineChart of Notifications b/ date
-    const [titleNotifDate, setTitleNotifDate] = useState('Notificaciones por Fecha');
+    const titleNotifDate = 'Notificaciones por Fecha';
     const [labelsNotifDate, setLabelsNotifDate] = useState(labelsNotifDateMonth);
     const [labelDataNotifDate, setLabelDataNotifDate] = useState('Notificaciones al mes');
     const [dataSetNotifDate, setDataSetNotifDate] = useState();
+    //Data for the LineChart of Users b/date
+    const titleUsersDate = 'Usuarios por Fecha';
+    const [labelsUsersDate, setLabelsUsersDate] = useState();
+    const [labelDataUsersDate, setLabelDataUsersDate] = useState('Usuarios al mes');
+    const [dataSetUsersDate, setDataSetUsersDate] = useState();
+    const [usersData, setUsersData] = useState();
     /**/
- 
+    if (!usersData) getUsersData({setUsersData});
     if (!data) datosNotificaciones({setData});
     if (labelsCategory.length === 0) getLabelsCategory({setLabelsCategory});
     if (datasetCategory.length === 0 && data) setDatasetCategory(getDatasetCategory({data}));
@@ -124,15 +140,8 @@ function Dashboard(){
                     
                 </div>
                 <div>
-                    <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate}/>
+                    <ExampleLine text={titleUsersDate} labels={labelsNotifDate} label={labelDataUsersDate} ocurrencies={dataSetNotifDate}/>
                     <div className="buttons-div">
-                        <div class="d-flex my-switch align-items-center justify-content-center">
-                            <h2 class="form-text text-1">General</h2>
-                            <div id="switch-div" class="form-check form-switch form-check-inline">
-                                <input id="revenue" class="form-check-input form-check-inline" type="checkbox"></input>
-                            </div>
-                            <h2 class="form-text text-1">Categoría</h2>
-                        </div>
                         <div class="d-flex my-switch align-items-center justify-content-center">
                             <h2 class="form-text text-1">Mes</h2>
                             <div id="switch-div" class="form-check form-switch form-check-inline">

@@ -4,9 +4,10 @@ import Map from 'react-map-gl';
 function PruebaMap() {
   return <Map
     initialViewState={{
-      longitude: -99.3609683,
-      latitude: 19.517983,
-      zoom: 10
+      longitude: -99.2675,
+      latitude: 19.5562,
+      zoom: 9,
+      scrollZoom: false,
     }}
     style={{width: '80vw', height: '50vh', borderRadius: '15px'}}
     mapStyle="mapbox://styles/mapbox/dark-v9"
