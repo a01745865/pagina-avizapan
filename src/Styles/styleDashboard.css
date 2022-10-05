@@ -1,7 +1,37 @@
-
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
 .estadisticas{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap: 2.5rem;
+}
+
+.estad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash-title {
+    margin-top: 30px!important;
+}
+
+.buttons-div {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+.btn-group-cat, .btn-group-day {
+    display: flex;
+    justify-content: flex-end;
+    width: 70%;
 }

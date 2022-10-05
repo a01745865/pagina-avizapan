@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 const bcrypt = require('bcryptjs');
-const url = "http://localhost:4000/";
+const url = "http://192.168.68.115:4000/";
 
 
 function LogIn({setSuccess, setAdminId}){
@@ -51,6 +51,7 @@ function LogIn({setSuccess, setAdminId}){
     const handleSubmit = async (e) => {
         e.preventDefault();
         var hash = bcrypt.hashSync(contra, 10);
+        console.log(hash)
         try{
             const {data} = await logIn({username: usuario, password: hash});
             localStorage.setItem("tokenAvizapan", data.token);

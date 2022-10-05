@@ -6,7 +6,7 @@ import Example from "./Charts/pieChart";
 import ExampleLine from "./Charts/lineChart";
 import PruebaMap from "./map";
 
-const url = "http://192.168.1.72:4000/";
+const url = "http://192.168.68.115:4000/";
 
 async function datosNotificaciones({setData}){
     try{
@@ -97,19 +97,44 @@ function Dashboard(){
     if (!dataSetNotifDate && data && labelDataNotifDate) setDataSetNotifDate(getOcurrenciesPDate(data, labelsNotifDate));
 
     return(
-        <>
-        <div className="estadisticas">
-            <div>
-                <Example labels={labelsCategory} dataset={datasetCategory} />
+        <div className="dashboard">
+            <h1 className="dash-title">Estadísticas</h1>
+            <div className="estadisticas">
+                <div>
+                    <Example labels={labelsCategory} dataset={datasetCategory} />
+                </div>
+                <div>
+                    <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate}/>
+                    <div className="buttons-div">
+                        <div class="btn-group btn-group-cat" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary btn-sm">General</button>
+                            <button type="button" class="btn btn-primary btn-sm">Categorías</button>
+                        </div>
+                        <div class="btn-group btn-group-day" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary btn-sm">Mes</button>
+                            <button type="button" class="btn btn-primary btn-sm">Año</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div>
+                    <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate}/>
+                    <div className="buttons-div">
+                    <div class="d-flex my-switch align-items-center justify-content-center">
+                        <h2 class="form-text text-1">Fix</h2>
+                        <div class="form-check form-switch form-check-inline">
+                            <input id="revenue" class="form-check-input form-check-inline" type="checkbox"></input>
+                        </div>
+                        <h2 class="form-text text-1">Fix</h2>
+                    </div>
+
+                    </div>
+                </div>
             </div>
-            <div>
-                <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate}/>
+            <div className="estad">
+                <PruebaMap/>
             </div>
         </div>
-        <div className="estad">
-            <PruebaMap/>
-        </div>
-        </>
     );
 }
 
