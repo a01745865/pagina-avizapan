@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from "axios";
 import "../Styles/styleAvisos.css";
 
-const url = "http://192.168.68.115:4000/";
+const url = "http://10.48.71.181:4000/";
 
 async function getLocation(zipcode){    
     try{

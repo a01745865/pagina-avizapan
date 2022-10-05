@@ -15,6 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2.5rem;
 }
 
 .dash-title {
@@ -34,4 +35,13 @@
     display: flex;
     justify-content: flex-end;
     width: 70%;
+}
+
+#revenue {
+    margin: 0;
+}
+
+#switch-div{
+    margin: 0 10px;
+    padding: 0;
 }

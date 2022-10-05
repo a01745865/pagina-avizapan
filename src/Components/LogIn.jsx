@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 const bcrypt = require('bcryptjs');
-const url = "http://192.168.68.115:4000/";
+const url = "http://10.48.71.181:4000/";
 
 
 function LogIn({setSuccess, setAdminId}){

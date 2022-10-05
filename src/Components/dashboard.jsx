@@ -6,7 +6,7 @@ import Example from "./Charts/pieChart";
 import ExampleLine from "./Charts/lineChart";
 import PruebaMap from "./map";
 
-const url = "http://192.168.68.115:4000/";
+const url = "http://10.48.71.181:4000/";
 
 async function datosNotificaciones({setData}){
     try{
@@ -106,13 +106,19 @@ function Dashboard(){
                 <div>
                     <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate}/>
                     <div className="buttons-div">
-                        <div class="btn-group btn-group-cat" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-primary btn-sm">General</button>
-                            <button type="button" class="btn btn-primary btn-sm">Categorías</button>
+                        <div class="d-flex my-switch align-items-center justify-content-center">
+                            <h2 class="form-text text-1">General</h2>
+                            <div id="switch-div" class="form-check form-switch form-check-inline">
+                                <input id="revenue" class="form-check-input form-check-inline" type="checkbox"></input>
+                            </div>
+                            <h2 class="form-text text-1">Categoría</h2>
                         </div>
-                        <div class="btn-group btn-group-day" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-primary btn-sm">Mes</button>
-                            <button type="button" class="btn btn-primary btn-sm">Año</button>
+                        <div class="d-flex my-switch align-items-center justify-content-center">
+                            <h2 class="form-text text-1">Mes</h2>
+                            <div id="switch-div" class="form-check form-switch form-check-inline">
+                                <input id="revenue" class="form-check-input form-check-inline" type="checkbox"></input>
+                            </div>
+                            <h2 class="form-text text-1">Año</h2>
                         </div>
                     </div>
                     
@@ -120,14 +126,20 @@ function Dashboard(){
                 <div>
                     <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate}/>
                     <div className="buttons-div">
-                    <div class="d-flex my-switch align-items-center justify-content-center">
-                        <h2 class="form-text text-1">Fix</h2>
-                        <div class="form-check form-switch form-check-inline">
-                            <input id="revenue" class="form-check-input form-check-inline" type="checkbox"></input>
+                        <div class="d-flex my-switch align-items-center justify-content-center">
+                            <h2 class="form-text text-1">General</h2>
+                            <div id="switch-div" class="form-check form-switch form-check-inline">
+                                <input id="revenue" class="form-check-input form-check-inline" type="checkbox"></input>
+                            </div>
+                            <h2 class="form-text text-1">Categoría</h2>
                         </div>
-                        <h2 class="form-text text-1">Fix</h2>
-                    </div>
-
+                        <div class="d-flex my-switch align-items-center justify-content-center">
+                            <h2 class="form-text text-1">Mes</h2>
+                            <div id="switch-div" class="form-check form-switch form-check-inline">
+                                <input id="revenue" class="form-check-input form-check-inline" type="checkbox"></input>
+                            </div>
+                            <h2 class="form-text text-1">Año</h2>
+                        </div>
                     </div>
                 </div>
             </div>
