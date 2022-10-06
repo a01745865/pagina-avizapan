@@ -5,6 +5,9 @@ import "../Styles/styleDashboard.css";
 import Example from "./Charts/pieChart";
 import ExampleLine from "./Charts/lineChart";
 import PruebaMap from "./map";
+//Map
+import { Marker } from "react-map-gl";
+import pin from '../Assets/999105.png';
 
 const url = "http://localhost:4000/";
 
@@ -83,7 +86,6 @@ function getOcurrenciesNotifDates(data, labels){
     }
     return ocurrencies;
 }
-// -> Falta hacer los dataset dependiendo de las categorias
 const dataSet = [
     {
         label: 'Vialidad',
@@ -110,20 +112,6 @@ const dataSet = [
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
     },
 ]
-
-function getDataSetCategories(data, labels) {
-    dataSet.forEach(category => {
-        let categoryId = 0
-        if (category.label === 'Vialidad') categoryId = 1
-        else if (category.label === 'Climatológica') categoryId = 2
-        else if (category.label === 'Sismológica') categoryId = 5
-        else if (category.label === 'Protección Civil') categoryId = 6
-        let newData = data.filter((notification) => notification.notification_categoryId === categoryId);
-        let ocurrencies = getOcurrenciesNotifDates(newData, labels);
-        category.data = ocurrencies;
-    });
-    return dataSet;
-} 
 
 /*Line Chart Users */
 async function getUsersData({setUsersData}){
@@ -170,6 +158,25 @@ function getOcurrenciesUsersDates(data, labels){
     return ocurrencies;
 }
 
+/*Map Markers */
+function getMarkers(data){
+    const datos = {};
+    data.forEach(notification => {
+        if (datos[[notification.notification_latitude, notification.notification_longitude]])  datos[[notification.notification_latitude, notification.notification_longitude]] = datos[[notification.notification_latitude, notification.notification_longitude]] + 1 
+        else datos[[notification.notification_latitude, notification.notification_longitude]] = 1
+    });
+
+    const marcadores =[];
+    for(var clave in datos){
+        let coordenadas = (clave.split(','));
+        let longitude = parseFloat(coordenadas[1]);
+        let latitude = parseFloat(coordenadas[0]);
+        let numero = datos[clave]
+        marcadores.push(<Marker longitude={longitude} latitude={latitude} anchor="top"><img src={pin} width='15px' height='15px' /><p style={{'color': 'white', 'textAlign':'center', 'marginBottom':'0', 'fontSize':'10px'}}>{numero}</p></Marker>)
+    }    
+    return marcadores;
+}
+
 function Dashboard(){
     //Notifications Data
     const [data, setData] = useState();
@@ -182,9 +189,6 @@ function Dashboard(){
     const [labelDataNotifDate, setLabelDataNotifDate] = useState('Notificaciones al mes');
     const [dataSetNotifDate, setDataSetNotifDate] = useState();
     const [labelsNotifType, setLabelsNotifType] = useState(false);
-    const [setType, setSetType] = useState(false);
-    //Dataset for the Notifications by Categories by Date
-    const [dataSetsCategories, setDataSetsCategories] = useState(null);
     //Data for the LineChart of Users b/date
     const titleUsersDate = 'Usuarios por Fecha';
     const [labelsUsersDate, setLabelsUsersDate] = useState(labelsMonth);
@@ -192,6 +196,8 @@ function Dashboard(){
     const [dataSetUsersDate, setDataSetUsersDate] = useState();
     const [usersData, setUsersData] = useState();
     const [labelsUsersType, setLabelsUsersType] = useState(false);
+    //Map
+    const [markers, setMarkers] = useState();
     /**/
 
     //This helps to the functionality of the radio buttons of the stats
@@ -208,7 +214,7 @@ function Dashboard(){
     }, [labelsNotifType]);
 
     useEffect(()=>{
-        if(data && !dataSetsCategories) setDataSetNotifDate(getOcurrenciesNotifDates(data, labelsNotifDate));
+        if(data) setDataSetNotifDate(getOcurrenciesNotifDates(data, labelsNotifDate));
     }, [labelsNotifDate]);
 
     useEffect(()=>{
@@ -227,11 +233,6 @@ function Dashboard(){
         if (usersData) setDataSetUsersDate(getOcurrenciesUsersDates(usersData, labelsUsersDate));
     }, [labelsUsersDate]);
 
-    useEffect(()=>{
-        if (setType && data && labelsNotifDate) setDataSetsCategories(getDataSetCategories(data, labelsNotifDate));
-        else setDataSetsCategories(null);
-    }, [setType, labelsNotifDate])
-
     //Data from the db
     if (!usersData) getUsersData({setUsersData});
     if (!data) datosNotificaciones({setData});
@@ -242,7 +243,8 @@ function Dashboard(){
     if(!dataSetNotifDate && data && labelsNotifDate) setDataSetNotifDate(getOcurrenciesNotifDates(data, labelsNotifDate));
     //Users
     if(!dataSetUsersDate && usersData && labelsUsersDate) setDataSetUsersDate(getOcurrenciesUsersDates(usersData, labelsUsersDate));
-    
+    //Markers
+    if(!markers && data) setMarkers(getMarkers(data));
     return(
         <div className="dashboard">
             <h1 className="dash-title">Estadísticas</h1>
@@ -251,7 +253,7 @@ function Dashboard(){
                     <Example labels={labelsCategory} dataset={datasetCategory} />
                 </div>
                 <div>
-                    <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate} dataSets={dataSetsCategories} />
+                    <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate} />
                     <div className="buttons-div">
                         
                         <div class="d-flex my-switch align-items-center justify-content-center">
@@ -278,7 +280,7 @@ function Dashboard(){
                 </div>
             </div>
             <div className="estad">
-                <PruebaMap/>
+                <PruebaMap markers={markers}/>
             </div>
         </div>
     );

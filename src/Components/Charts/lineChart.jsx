@@ -46,7 +46,5 @@ export default function ExampleLine({text, labels, label, ocurrencies, dataSets}
     ],
   };
 
-  if (dataSets) data.datasets = dataSets;
-
   return <Line options={options} data={data} />;
 }
