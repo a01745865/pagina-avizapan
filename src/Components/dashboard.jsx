@@ -253,13 +253,7 @@ function Dashboard(){
                 <div>
                     <ExampleLine text={titleNotifDate} labels={labelsNotifDate} label={labelDataNotifDate} ocurrencies={dataSetNotifDate} dataSets={dataSetsCategories} />
                     <div className="buttons-div">
-                        <div class="d-flex my-switch align-items-center justify-content-center">
-                            <h2 class="form-text text-1">General</h2>
-                            <div id="switch-div" class="form-check form-switch form-check-inline">
-                                <input id="revenue" class="form-check-input form-check-inline" type="checkbox" onChange={e => {setSetType(!setType);}} ></input>
-                            </div>
-                            <h2 class="form-text text-1">Categoría</h2>
-                        </div>
+                        
                         <div class="d-flex my-switch align-items-center justify-content-center">
                             <h2 class="form-text text-1">Mes</h2>
                             <div id="switch-div" class="form-check form-switch form-check-inline">
