@@ -7,7 +7,7 @@ import ExampleLine from "./Charts/lineChart";
 import PruebaMap from "./map";
 //Map
 import { Marker } from "react-map-gl";
-import pin from '../Assets/999105.png';
+import pin from '../Assets/Alert.png';
 
 const url = "http://localhost:4000/";
 
@@ -172,7 +172,7 @@ function getMarkers(data){
         let longitude = parseFloat(coordenadas[1]);
         let latitude = parseFloat(coordenadas[0]);
         let numero = datos[clave]
-        marcadores.push(<Marker longitude={longitude} latitude={latitude} anchor="top"><img src={pin} width='15px' height='15px' /><p style={{'color': 'white', 'textAlign':'center', 'marginBottom':'0', 'fontSize':'10px'}}>{numero}</p></Marker>)
+        marcadores.push(<Marker longitude={longitude} latitude={latitude} anchor="top"><div style={{'display':'flex', 'gap':'.15rem', 'justifyContent':'center', 'alignItems':'center'}}><p style={{'color': 'white', 'textAlign':'center', 'marginBottom':'0', 'fontSize':'9px'}}>{numero}</p><img src={pin} width='15px' height='15px' /></div></Marker>)
     }    
     return marcadores;
 }
