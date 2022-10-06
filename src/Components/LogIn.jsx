@@ -51,7 +51,6 @@ function LogIn({setSuccess, setAdminId}){
     const handleSubmit = async (e) => {
         e.preventDefault();
         var hash = bcrypt.hashSync(contra, 10);
-        console.log(hash)
         try{
             const {data} = await logIn({username: usuario, password: hash});
             localStorage.setItem("tokenAvizapan", data.token);

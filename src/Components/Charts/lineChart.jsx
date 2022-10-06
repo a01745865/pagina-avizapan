@@ -20,7 +20,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-export default function ExampleLine({text, labels, label, ocurrencies}) {
+export default function ExampleLine({text, labels, label, ocurrencies, dataSets}) {
   const options = {
     responsive: true,
     plugins: {
@@ -46,6 +46,7 @@ export default function ExampleLine({text, labels, label, ocurrencies}) {
     ],
   };
 
+  if (dataSets) data.datasets = dataSets;
 
   return <Line options={options} data={data} />;
 }
