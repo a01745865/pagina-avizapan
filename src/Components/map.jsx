@@ -11,8 +11,7 @@ function PruebaMap({markers}) {
     }}
     style={{width: '80vw', height: '50vh', borderRadius: '15px'}}
     mapStyle="mapbox://styles/mapbox/dark-v9"
-    mapboxAccessToken={process.env.MAP_API_KEY}
-    //pk.eyJ1IjoiYW5nZWwwMTI5MTIiLCJhIjoiY2wzOWpqampiMGFqdzNqbzUyN3VkbThoNSJ9.-Geofb50Jj2CZcZoYkMM4g
+    mapboxAccessToken= "pk.eyJ1IjoiYW5nZWwwMTI5MTIiLCJhIjoiY2wzOWpqampiMGFqdzNqbzUyN3VkbThoNSJ9.-Geofb50Jj2CZcZoYkMM4g"
   >
   {markers}
   </Map>
