@@ -9,7 +9,7 @@ import PruebaMap from "./map";
 import { Marker } from "react-map-gl";
 import pin from '../Assets/Alert.png';
 
-const url = "http://localhost:4000/";
+const url = "https://avizapan-app-3s4eu.ondigitalocean.app/";
 
 async function datosNotificaciones({setData}){
     try{

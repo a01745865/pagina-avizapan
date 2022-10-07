@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 const bcrypt = require('bcryptjs');
-const url = "http://localhost:4000/";
+const url = "https://avizapan-app-3s4eu.ondigitalocean.app/";
 
 
 function LogIn({setSuccess, setAdminId}){
