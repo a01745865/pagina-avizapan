@@ -4,11 +4,6 @@ import "../Styles/styleDashboard.css";
 //Charts
 import Example from "./Charts/pieChart";
 import ExampleLine from "./Charts/lineChart";
-import PruebaMap from "./map";
-//Map
-import { Marker } from "react-map-gl";
-import pin from '../Assets/Alert.png';
-
 const url = "https://avizapan-app-3s4eu.ondigitalocean.app/";
 
 async function datosNotificaciones({setData}){
@@ -158,25 +153,6 @@ function getOcurrenciesUsersDates(data, labels){
     return ocurrencies;
 }
 
-/*Map Markers */
-function getMarkers(data){
-    const datos = {};
-    data.forEach(notification => {
-        if (datos[[notification.notification_latitude, notification.notification_longitude]])  datos[[notification.notification_latitude, notification.notification_longitude]] = datos[[notification.notification_latitude, notification.notification_longitude]] + 1 
-        else datos[[notification.notification_latitude, notification.notification_longitude]] = 1
-    });
-
-    const marcadores =[];
-    for(var clave in datos){
-        let coordenadas = (clave.split(','));
-        let longitude = parseFloat(coordenadas[1]);
-        let latitude = parseFloat(coordenadas[0]);
-        let numero = datos[clave]
-        marcadores.push(<Marker longitude={longitude} latitude={latitude} anchor="top"><div style={{'display':'flex', 'gap':'.15rem', 'justifyContent':'center', 'alignItems':'center'}}><p style={{'color': 'white', 'textAlign':'center', 'marginBottom':'0', 'fontSize':'9px'}}>{numero}</p><img src={pin} width='15px' height='15px' /></div></Marker>)
-    }    
-    return marcadores;
-}
-
 function Dashboard(){
     //Notifications Data
     const [data, setData] = useState();
@@ -196,8 +172,6 @@ function Dashboard(){
     const [dataSetUsersDate, setDataSetUsersDate] = useState();
     const [usersData, setUsersData] = useState();
     const [labelsUsersType, setLabelsUsersType] = useState(false);
-    //Map
-    const [markers, setMarkers] = useState();
     /**/
 
     //This helps to the functionality of the radio buttons of the stats
@@ -243,8 +217,6 @@ function Dashboard(){
     if(!dataSetNotifDate && data && labelsNotifDate) setDataSetNotifDate(getOcurrenciesNotifDates(data, labelsNotifDate));
     //Users
     if(!dataSetUsersDate && usersData && labelsUsersDate) setDataSetUsersDate(getOcurrenciesUsersDates(usersData, labelsUsersDate));
-    //Markers
-    if(!markers && data) setMarkers(getMarkers(data));
     return(
         <div className="dashboard">
             <h1 className="dash-title">Estadísticas</h1>
@@ -278,9 +250,6 @@ function Dashboard(){
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="estad">
-                <PruebaMap markers={markers}/>
             </div>
         </div>
     );
