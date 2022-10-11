@@ -23,6 +23,7 @@ async function getCategories({setCategories}){
 }
 
 function Form({adminId}){
+    console.log(process.env.REACT_APP_API_KEY);
     //Variables que guardan el estado de los valores que se meten en los input
     const [title, setTitulo] = useState();
     const [categoryId, setCategoria] = useState();
