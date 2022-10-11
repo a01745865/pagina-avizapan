@@ -22,7 +22,7 @@ async function getCategories({setCategories}){
     }
 }
 
-function Form({adminId}){
+function Form({id}){
     //Variables que guardan el estado de los valores que se meten en los input
     const [title, setTitulo] = useState();
     const [categoryId, setCategoria] = useState();
@@ -62,7 +62,7 @@ function Form({adminId}){
         const lat = data.results[0].geometry.location.lat;
         const long = data.results[0].geometry.location.lng;
         axios.post(
-            `${url}notifications`, {title: title, description: description, location: lugar, latitude: lat, longitude: long, adminId: adminId, duration: tiempo, categoryId: categoryId}
+            `${url}notifications`, {title: title, description: description, location: lugar, latitude: lat, longitude: long, adminId: id, duration: tiempo, categoryId: categoryId}
         ).then((respone) => {console.log(respone.data);});
         setEnviado(true);
         reset();

@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function Inicio(){
     const [success, setSuccess] = useState(false);
-    const [adminId, setAdminId] = useState(null);
+    const [adminId, setAdminId] = useState(1);
     
     return(success ? (<Avisos adminId={adminId} setSuccess={setSuccess} />) : (<LogIn setSuccess={setSuccess} setAdminId={setAdminId}/>));
 }
