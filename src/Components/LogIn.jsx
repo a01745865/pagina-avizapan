@@ -15,12 +15,15 @@ function LogIn({setSuccess, setAdminId}){
                     'Authorization': `Bearer ${token}`
                 },
             });
-            setAdminId(data.userId);
-            setSuccess(true);
+            if (data.id){
+                setAdminId(data.userId);
+                setSuccess(true);
+            }
         }catch{
             localStorage.removeItem("tokenAvizapan");
             setMessageError('Sesion Finalizada. Favor de ingresar de nuevo.');
             setError(true);
+            setAdminId(null);
         }
 
     }
@@ -54,8 +57,13 @@ function LogIn({setSuccess, setAdminId}){
         try{
             const {data} = await logIn({username: usuario, password: hash});
             localStorage.setItem("tokenAvizapan", data.token);
-            setAdminId(data.id);
-            setSuccess(true);
+            if (data.id){
+                setAdminId(data.id);
+                setSuccess(true);
+            }else{
+                setMessageError('Usuario o Contraseña Incorrecta');
+                setError(true);
+            }
         }catch{
             setMessageError('Usuario o Contraseña Incorrecta');
             setError(true);
