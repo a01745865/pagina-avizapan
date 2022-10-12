@@ -25,7 +25,7 @@ async function getCategories({setCategories}){
 function Form({id}){
     //Variables que guardan el estado de los valores que se meten en los input
     const [title, setTitulo] = useState();
-    const [categoryId, setCategoria] = useState();
+    const [categoryId, setCategoria] = useState(1);
     const [description, setDescripcion] = useState();
     const [tiempo, setTiempo] = useState();
     const [lugar, setLugar] = useState()
@@ -105,7 +105,7 @@ function Form({id}){
                         {selectOptions}
                     </select>
                     <div className="form-floating descripcion">
-                        <textarea name="descripcion" className="form-control" placeholder="Leave a comment here" value={description} onChange={e => setDescripcion(e.currentTarget.value)} required></textarea>
+                        <textarea name="descripcion" className="form-control" placeholder="Leave a comment here" value={description} onChange={e => setDescripcion(e.currentTarget.value)} maxLength="250" required></textarea>
                         <label htmlFor="descripcion">Descripcion</label>
                     </div>
                     <div className='tiempoCodigo'>
