@@ -93,15 +93,15 @@ function LogIn({setSuccess, setAdminId}){
                 <div className="logIn">
                     <form action="">
                         <p className="titulo-login">
-                            LOG IN
+                            Inicio de Sesion
                         </p>
                         <div className="form-floating input-login mb-4">
                             <input type="text" name="usuario" className="form-control" placeholder="name@example.com" value={usuario} onChange={e => {setUsuario(e.currentTarget.value)}}/>
                             <label htmlFor="usuario">Usuario</label>
                         </div>
                         <div className="form-floating input-login ">
-                            <input type="password" className="form-control" name="contraseña" placeholder="Password" value={contra} onChange={e => {setContra(e.currentTarget.value)}} />
-                            <label htmlFor="contraseña">Password</label>
+                            <input type="password" className="form-control" name="contraseña" placeholder="Contraseña" value={contra} onChange={e => {setContra(e.currentTarget.value)}} />
+                            <label htmlFor="contraseña">Contraseña</label>
                         </div>
                         <br />
                         <button type="button" className="btn btn-outline-primary send-login" disabled={disable} onClick={handleSubmit} >Entrar -{">"}</button>
