@@ -24,7 +24,6 @@ function LogIn({setSuccess, setAdminId}){
             localStorage.removeItem("tokenAvizapan");
             setMessageError('Sesion Finalizada. Favor de ingresar de nuevo.');
             setError(true);
-            setAdminId(null);
         }
 
     }
