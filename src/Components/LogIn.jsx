@@ -57,8 +57,8 @@ function LogIn({setSuccess, setAdminId}){
         try{
             const {data} = await logIn({username: usuario, password: hash});
             localStorage.setItem("tokenAvizapan", data.token);
-            if (data.id){
-                setAdminId(data.id);
+            if (data.userId){
+                setAdminId(data.userId);
                 setSuccess(true);
             }else{
                 setMessageError('Usuario o Contraseña Incorrecta');
