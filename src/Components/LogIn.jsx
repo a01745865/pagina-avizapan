@@ -15,7 +15,8 @@ function LogIn({setSuccess, setAdminId}){
                     'Authorization': `Bearer ${token}`
                 },
             });
-            if (data.id){
+            console.log(data);
+            if (data.userId){
                 setAdminId(data.userId);
                 setSuccess(true);
             }
