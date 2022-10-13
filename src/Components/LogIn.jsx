@@ -93,7 +93,7 @@ function LogIn({setSuccess, setAdminId}){
                 <div className="logIn">
                     <form action="">
                         <p className="titulo-login">
-                            Inicio de Sesion
+                            Inicio de Sesión
                         </p>
                         <div className="form-floating input-login mb-4">
                             <input type="text" name="usuario" className="form-control" placeholder="name@example.com" value={usuario} onChange={e => {setUsuario(e.currentTarget.value)}}/>
