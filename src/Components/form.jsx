@@ -62,7 +62,7 @@ function Form({id}){
         const lat = data.results[0].geometry.location.lat;
         const long = data.results[0].geometry.location.lng;
         axios.post(
-            `${url}notifications`, {title: title, description: description, location: lugar, latitude: lat, longitude: long, adminId: id, duration: tiempo, categoryId: categoryId}
+            `${url}notifications`, {title: title, description: description, location: lugar, latitude: lat, longitude: long, adminId: 1, duration: tiempo, categoryId: categoryId}
         ).then((respone) => {console.log(respone.data);});
         setEnviado(true);
         reset();
