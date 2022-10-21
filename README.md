@@ -23,7 +23,7 @@ Instalación para Windows / MacOs
 
 * Da click en Abrir, y dirígete al directorio en donde descargaste el proyecto. Selecciona el proyecto que acabas de descargar. Después, da click en Aceptar.
 
-* Verificar que en los archivos llamados dashboard.jsx, form.jsx, Login.jsx que se ubiquen dentro de la carpeta ./Components que están en la carpeta de ./src las líneas donde se encuentra una variable llamada “url” sea la misma que está utilizando su servidor Node que corre la API.
+* Verificar que en los archivos llamados dashboard.jsx, form.jsx, Login.jsx que se ubiquen dentro de la carpeta ./Components que están en la carpeta de ./src las líneas donde se encuentra una variable llamada “url” sea la misma que está utilizando su servidor Node que corre la [API]([https://duckduckgo.com](https://github.com/pablogonzalezdelaparra/avizapan-api)).
 
 * En caso de ser una url diferente, reemplazar esta por la correcta.
 
